@@ -1,0 +1,140 @@
+9/16/2023, 3:21:25 PM 	 Route /ask_For_Blanks not exist
+----------------------------
+9/16/2023, 3:22:21 PM 	 Route /ask_For_Blanks not exist
+----------------------------
+9/16/2023, 3:22:22 PM 	 Route /ask_For_Blanks not exist
+----------------------------
+9/16/2023, 3:22:38 PM 	 Route /ask_For_Blanks not exist
+----------------------------
+9/16/2023, 3:23:32 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:25:50 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:25:57 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:26:06 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:27:10 PM 	 Route / not exist
+----------------------------
+9/16/2023, 3:27:10 PM 	 Route /favicon.ico not exist
+----------------------------
+9/16/2023, 3:27:25 PM 	 Route /generate_prompt not exist
+----------------------------
+9/16/2023, 3:27:36 PM 	 Route /generate_prompt not exist
+----------------------------
+9/16/2023, 3:27:41 PM 	 Route /api/generate_prompt not exist
+----------------------------
+9/16/2023, 3:27:48 PM 	 Route / not exist
+----------------------------
+9/16/2023, 3:28:19 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:28:20 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:28:41 PM 	 Route / not exist
+----------------------------
+9/16/2023, 3:28:44 PM 	 Route / not exist
+----------------------------
+9/16/2023, 3:28:51 PM 	 Route /generate_prompt not exist
+----------------------------
+9/16/2023, 3:30:01 PM 	 Route /api/translate_prompt not exist
+----------------------------
+9/16/2023, 3:31:27 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:31:34 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:32:53 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:32:54 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:33:35 PM 	 Route /api/generate_prompt not exist
+----------------------------
+9/16/2023, 3:33:46 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:34:55 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:36:01 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 3:36:02 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 5:27:29 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 5:28:05 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 5:33:01 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 5:36:24 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 5:36:25 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 5:38:12 PM 	 Route /translate_prompt not exist
+----------------------------
+9/16/2023, 7:35:18 PM 	 Route / not exist
+----------------------------
+9/16/2023, 7:35:53 PM 	 Route / not exist
+----------------------------
+9/16/2023, 7:44:59 PM 	 Route /marvin/translate_prompt?input=plan%20a%20big%20budget%20wedding not exist
+----------------------------
+9/16/2023, 7:45:13 PM 	 Route /marvin/translate_prompt not exist
+----------------------------
+9/16/2023, 7:45:29 PM 	 Route /marvin/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:45:42 PM 	 Route /marvin/api/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:45:44 PM 	 Route /marvin/api/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:45:45 PM 	 Route /marvin/api/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:45:47 PM 	 Route /marvin/api/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:45:50 PM 	 Route /marvin/api/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:45:59 PM 	 Route /api/marvin/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:46:02 PM 	 Route /api/marvin/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:46:03 PM 	 Route /api/marvin/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:46:07 PM 	 Route /api/marvin/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 7:46:39 PM 	 Route /marvin/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/16/2023, 8:01:24 PM 	 Route /api/translate_prompt?input=plan%20a%20wedding not exist
+----------------------------
+9/17/2023, 12:49:32 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 12:55:28 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:01:29 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:02:29 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:04:38 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:04:43 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:05:10 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:12:41 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:14:13 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:14:20 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:15:15 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 1:16:52 PM 	 Unexpected token w in JSON at position 0
+----------------------------
+9/17/2023, 1:16:56 PM 	 Unexpected token w in JSON at position 0
+----------------------------
+9/17/2023, 1:17:21 PM 	 Unexpected token w in JSON at position 0
+----------------------------
+9/17/2023, 1:21:21 PM 	 Route /translate_prompt not exist
+----------------------------
+9/17/2023, 1:21:22 PM 	 Route /translate_prompt not exist
+----------------------------
+9/17/2023, 2:10:31 PM 	 Route /api/ not exist
+----------------------------
+9/17/2023, 4:51:03 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/17/2023, 5:07:38 PM 	 Route /translate_prompt?params=wedding not exist
+----------------------------
