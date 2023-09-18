@@ -138,3 +138,23 @@
 ----------------------------
 9/17/2023, 5:07:38 PM 	 Route /translate_prompt?params=wedding not exist
 ----------------------------
+9/18/2023, 3:01:58 PM 	 Route /api/ask_For_Blanks not exist
+----------------------------
+9/18/2023, 4:27:06 PM 	 Route /apifill_In_Blanks not exist
+----------------------------
+9/18/2023, 4:27:41 PM 	 Route /api/recommend_Venues not exist
+----------------------------
+9/18/2023, 4:28:34 PM 	 Route /api/recommend_Venues not exist
+----------------------------
+9/18/2023, 4:29:43 PM 	 Route /api/recommend_Venues not exist
+----------------------------
+9/18/2023, 4:29:57 PM 	 Route /api/recommend_Venues not exist
+----------------------------
+9/18/2023, 4:30:57 PM 	 Route /api/recommend_Venues not exist
+----------------------------
+9/18/2023, 4:32:58 PM 	 Route /api/recommend_venues not exist
+----------------------------
+9/18/2023, 9:20:36 PM 	 Unexpected token " in JSON at position 0
+----------------------------
+9/18/2023, 9:20:40 PM 	 Unexpected token " in JSON at position 0
+----------------------------

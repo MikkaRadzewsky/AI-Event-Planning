@@ -1,3 +1,4 @@
+import json
 from pydantic import BaseModel, Field
 from marvin import ai_fn, ai_model
 from fastapi import FastAPI
@@ -27,8 +28,21 @@ class Event(BaseModel):
     # Date: str = Field(description="the specific date of the event")
 
 
+@ai_model
+class NestedEvent(Event):
+    """an Event and a string, nested in an object so they become one variable"""
+
+    MissingValuesString: str = Field(
+        description="a string that is supposed to include missing values of the event")
+
+
 @ai_fn
-def translate_prompt(input: str) -> Event:
+def is_Event_Prompt(input) -> bool:
+    """is this input a prompt about planning an event and makes sense with the details given? return boolean"""
+
+
+@ai_fn
+def translate_Prompt(input) -> Event:
     """isolate the values of an event as stated in the base model and put them in a new `Event`.
     if no event type/nam is given, enter unknown. 
     If no budget is given is given or can be inferred, then budget is unknown. 
@@ -37,18 +51,21 @@ def translate_prompt(input: str) -> Event:
 
 
 @ai_fn
-def ask_For_Blanks(event: Event) -> str:
+def ask_For_Blanks(Event) -> str:
     """ask the user for the missing (unknown) values in the event"""
 
 
 @ai_fn
-def fill_In_Blanks(event: Event, input: str) -> Event:
-    """if one of the 'unknown' values is given in the input, put it into the corresponding value of the event."""
+def fill_In_Blanks(nestedEvent) -> object:
+    """object include the current event and its values, and a string of user input meant to fill in missing values.
+    if one of the 'unknown' values is given in the input, put it into the corresponding value of the event."""
 
 
 @ai_fn
-def recommend_Venues(event: Event) -> Event:
-    """recommend 5 places to have a 'event.Budget' 'event.EventName' with 'event.Guests' in 'event.Location' """
+def recommend_Venues(Event) -> str:
+    """big budget means expensive and small budget means cheap etc.
+    recommend 5 places/venues to have a 'event.EventName' (example: date = restaurant/theater/... ), that can fit at least 'event.Guests' and fits a 'event.Budget' in 'event.Location'
+    the answer should: "I recommend the following places:" and then the list of places """
 
 
 # print((translate_prompt(
@@ -70,9 +87,15 @@ def recommend_Venues(event: Event) -> Event:
 # app.add_api_route("/fill_In_Blanks", fill_In_Blanks)
 
 
-@app.get("/marvin/translate_prompt")
+@app.get("/marvin/translate_Prompt")
 def translate_prompt_handler(input: str) -> Event:
-    result = translate_prompt(input)
+    result = translate_Prompt(input)
+    return result
+
+
+@app.get("/marvin/is_Event_Prompt")
+def is_Event_Prompt_handler(input: str) -> str:
+    result = is_Event_Prompt(input)
     return result
 
 
@@ -83,6 +106,12 @@ def ask_For_Blanks_handler(event: Event) -> str:
 
 
 @app.post("/marvin/fill_In_Blanks")
-def fill_In_Blanks_handler(event: Event, input: str) -> Event:
-    result = fill_In_Blanks(event, input)
+def fill_In_Blanks_handler(obj: NestedEvent) -> Event:
+    result = fill_In_Blanks(obj)
+    return result
+
+
+@app.post("/marvin/recommend_Venues")
+def recommend_Venues_handler(event: Event) -> str:
+    result = recommend_Venues(event)
     return result

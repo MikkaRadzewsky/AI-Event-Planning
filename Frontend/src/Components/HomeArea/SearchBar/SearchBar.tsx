@@ -1,6 +1,7 @@
 import { eventNames } from "process";
 import { useEffect, useState } from "react";
 import EventModel from "../../../Models/EventModel";
+import NestedEventModel from "../../../Models/NestedEventModel copy";
 import dataService from "../../../Services/DataService";
 import notifyService from "../../../Services/NotifyService";
 import MarvinOutput from "../MarvinOutput/MarvinOutput";
@@ -11,64 +12,93 @@ function SearchBar(): JSX.Element {
   const [outputText, setOutputText] = useState("");
   const inputElement = document.getElementById("InputText") as HTMLInputElement;
   //   const outputElement = document.getElementById("AIOutput") as HTMLDivElement;
+  let updatedEvent: EventModel;
 
   function hasNullProperty(obj: EventModel): boolean {
     for (const value of Object.values(obj)) {
       if (value === null || value === "unknown") {
-        console.log("true");
         return true;
       }
     }
-    console.log("false");
     return false;
   }
 
+  async function isValidPrompt() {
+    const valid = await dataService.sendAndReceiveData(
+      "is_Event_Prompt",
+      inputElement.value.toString()
+    );
+    return valid;
+  }
+
+  async function sendPrompt() {
+    const event = await dataService.sendAndReceiveData(
+      "translate_Prompt",
+      inputElement.value.toString()
+    );
+    return event;
+  }
+
+  async function askForBlanks() {
+    const missingValuesStr = await dataService.sendAndReceiveString(
+      "ask_For_Blanks",
+      updatedEvent
+    );
+    return missingValuesStr.toString();
+  }
+
+  async function fillInBlanks() {
+    const nestedEvent = new NestedEventModel(
+      updatedEvent + inputElement.value.toString()
+    );
+    const blanks = await dataService.sendAndReceiveNestedEvent(
+      "fill_In_Blanks",
+      nestedEvent
+    );
+    return blanks;
+  }
+
+  async function recommendVenues() {}
+
   async function sendToBackend() {
     try {
-      let updatedEvent: EventModel;
-
-      if (!currentEvent) {
-        const event: EventModel = await dataService.sendAndReceiveInitialPrompt(
-          "translate_prompt",
-          inputElement.value.toString()
+      console.log("click");
+      setOutputText("I'm thinking...");
+      if (!isValidPrompt) {
+        setOutputText(
+          "you are getting off topic, I currently only deal in events."
         );
+        return;
+      }
+      if (!currentEvent || currentEvent === undefined) {
+        console.log("no event yet");
 
-        // let event1: EventModel = event;
-        // console.log(event1);
-
-        updatedEvent = event;
+        updatedEvent = await sendPrompt();
         console.log(updatedEvent);
 
-        // If the event is missing values of the event model
+        setCurrentEvent(updatedEvent);
+
+        // If the event is missing values
         if (hasNullProperty(updatedEvent)) {
           // Update AI chat text...
-          setOutputText(
-            await dataService.askForMissingValues(
-              "ask_For_Blanks",
-              updatedEvent
-            )
-          );
+          console.log("missing values...");
+          const text = await askForBlanks();
+          setOutputText(text);
         }
-
-        // Use updatedEvent instead of currentEvent
-        setCurrentEvent(updatedEvent);
       }
 
       if (updatedEvent && hasNullProperty(updatedEvent)) {
-        console.log("missing values...");
-
-        // Use updatedEvent instead of currentEvent
-        updatedEvent = await dataService.sendAndReceiveMissingValues(
-          "fill_In_Blanks",
-          inputElement.value
-        );
-
+        updatedEvent = await fillInBlanks();
         setCurrentEvent(updatedEvent);
+
+        if (!hasNullProperty(updatedEvent)) {
+          recommendVenues();
+          return;
+        }
       }
 
       if (updatedEvent && !hasNullProperty(updatedEvent)) {
-        // Recommend places that fit the event values...
-        console.log("recommending...");
+        recommendVenues();
       }
     } catch (err: any) {
       notifyService.error(err);

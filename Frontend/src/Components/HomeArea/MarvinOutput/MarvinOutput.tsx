@@ -1,6 +1,3 @@
-// MarvinOutput.tsx
-
-import React from "react";
 import "./MarvinOutput.css";
 
 interface MarvinOutputProps {
