@@ -8,8 +8,7 @@ from marvin import ai_fn
 
 
 load_dotenv()
-openai_api_key = os.getenv(
-    'MARVIN_OPENAI_API_KEY')
+openai_api_key = os.getenv('MARVIN_OPENAI_API_KEY')
 
 app = FastAPI()
 
@@ -25,7 +24,7 @@ class Event(BaseModel):
         description="description of budget - budget option values are low budget /mid budget/ high budget")
     Guests: str = Field(description="amount of guest/people attending - translate words to numbers + the words around/up to. example: small gathering will be translated to around 5 people. the number will be translated according the the specific event - a big gathering of friends is around 20 people, but a big wedding is around 300 people. ")
     # EventType: str = Field(
-    # description="what is the event? casual, professional, formal, etc ")
+    descrip  # tion="what is the event? casual, professional, formal, etc ")
     # Date: str = Field(description="the specific date of the event")
 
 
@@ -33,7 +32,7 @@ class Event(BaseModel):
 class NestedEvent(Event):
     """an Event and a string, nested in an object so they become one variable"""
 
-    MissingValuesString: str = Field(
+    MissingValues: str = Field(
         description="a string that is supposed to include missing values of the event")
 
 

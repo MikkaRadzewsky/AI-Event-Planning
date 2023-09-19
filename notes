@@ -1,0 +1,6 @@
+ Bugs:
+
+ - click twice first - nor rendered...
+ - disable button until final ai output
+ - structure ai output to look nice, not just one line
+ - "im thinking" -> show progress, just looks stuck

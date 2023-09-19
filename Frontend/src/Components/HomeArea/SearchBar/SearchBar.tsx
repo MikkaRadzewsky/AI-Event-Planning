@@ -109,14 +109,14 @@ function SearchBar(): JSX.Element {
         }
       }
       updatedEvent = currentEvent;
-      console.log(`line 102 - ${JSON.stringify(updatedEvent)}`);
+      console.log(`line 112 - ${JSON.stringify(updatedEvent)}`);
       if (hasNullProperty(updatedEvent)) {
         console.log("is missing values-> fill them in");
 
         updatedEvent = await fillInBlanks(updatedEvent);
         setCurrentEvent(updatedEvent);
         // updatedEvent = currentEvent;
-        console.log(`line 109 - ${updatedEvent}`);
+        console.log(`line 119 - ${updatedEvent}`);
         if (!hasNullProperty(updatedEvent)) {
           const text = recommendVenues(updatedEvent);
           setOutputText(await text);
