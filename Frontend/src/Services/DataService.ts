@@ -1,6 +1,6 @@
 import axios from "axios";
 import EventModel from "../Models/EventModel";
-import NestedEventModel from "../Models/NestedEventModel copy";
+import NestedEventModel from "../Models/NestedEventModel";
 import appConfig from "../Utils/Config";
 
 class DataService {
@@ -32,16 +32,16 @@ class DataService {
     }
   }
 
-  async sendAndReceiveString<U>(endpoint: string, data: any): Promise<string> {
+  async sendAndReceiveString<U>(
+    endpoint: string,
+    data: EventModel
+  ): Promise<string> {
     try {
       const apiUrl = `http://localhost:3001/api/${endpoint}`;
 
-      const queryParams = data;
-      console.log("entered data service...");
+      console.log(`entered data service... ${data}`);
 
-      const response = await axios.post(apiUrl, null, {
-        params: queryParams,
-      });
+      const response = await axios.post(apiUrl, data);
 
       if (response.status === 200) {
         console.log("POST request with query parameters was successful");
@@ -62,18 +62,12 @@ class DataService {
     try {
       const apiUrl = `http://localhost:3001/api/${endpoint}`;
 
-      const queryParams = {
-        event: data,
-      };
       console.log("entered data service...");
 
-      const response = await axios.post(apiUrl, null, {
-        params: queryParams,
-      });
+      const response = await axios.post(apiUrl, data);
 
       if (response.status === 200) {
         console.log("POST request with query parameters was successful");
-        console.log(response.data);
       } else {
         console.error(`HTTP error! Status: ${response.status}`);
       }

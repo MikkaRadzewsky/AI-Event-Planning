@@ -10,8 +10,6 @@ const fastApiBaseUrl = "http://localhost:3002"; // FastAPI URL
 router.post("/is_Event_Prompt", async (req, res) => {
   try {
     const { input } = req.query;
-    console.log(input);
-
     const response = await axios.get(
       `${fastApiBaseUrl}/marvin/is_Event_Prompt`,
       { params: { input } }
@@ -28,6 +26,8 @@ router.post("/is_Event_Prompt", async (req, res) => {
 router.post("/translate_Prompt", async (req, res) => {
   try {
     const { input } = req.query;
+    console.log(input);
+
     const response = await axios.get(
       `${fastApiBaseUrl}/marvin/translate_Prompt`,
       {
@@ -47,7 +47,6 @@ router.post("/ask_For_Blanks", async (req, res) => {
   try {
     const event = req.body;
     console.log(event);
-
     const response = await axios.post(
       `${fastApiBaseUrl}/marvin/ask_For_Blanks`,
       event

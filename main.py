@@ -8,7 +8,8 @@ from marvin import ai_fn
 
 
 load_dotenv()
-openai_api_key = os.getenv('MARVIN_OPENAI_API_KEY')
+openai_api_key = os.getenv(
+    'MARVIN_OPENAI_API_KEY')
 
 app = FastAPI()
 
@@ -22,7 +23,7 @@ class Event(BaseModel):
         description="location (as general as country or as specific as city) of the event")
     Budget: str = Field(
         description="description of budget - budget option values are low budget /mid budget/ high budget")
-    Guest: str = Field(description="amount of guest/people attending - translate words to numbers + the words around/up to. example: small gathering will be translated to around 5 people. the number will be translated according the the specific event - a big gathering of friends is around 20 people, but a big wedding is around 300 people. ")
+    Guests: str = Field(description="amount of guest/people attending - translate words to numbers + the words around/up to. example: small gathering will be translated to around 5 people. the number will be translated according the the specific event - a big gathering of friends is around 20 people, but a big wedding is around 300 people. ")
     # EventType: str = Field(
     # description="what is the event? casual, professional, formal, etc ")
     # Date: str = Field(description="the specific date of the event")

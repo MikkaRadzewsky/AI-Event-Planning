@@ -1,7 +1,7 @@
 import { eventNames } from "process";
 import { useEffect, useState } from "react";
 import EventModel from "../../../Models/EventModel";
-import NestedEventModel from "../../../Models/NestedEventModel copy";
+import NestedEventModel from "../../../Models/NestedEventModel";
 import dataService from "../../../Services/DataService";
 import notifyService from "../../../Services/NotifyService";
 import MarvinOutput from "../MarvinOutput/MarvinOutput";
@@ -15,11 +15,17 @@ function SearchBar(): JSX.Element {
   let updatedEvent: EventModel;
 
   function hasNullProperty(obj: EventModel): boolean {
+    console.log(`check for null - ${JSON.stringify(obj)}`);
+
     for (const value of Object.values(obj)) {
       if (value === null || value === "unknown") {
+        console.log(true);
+
         return true;
       }
     }
+    console.log(false);
+
     return false;
   }
 
@@ -47,10 +53,15 @@ function SearchBar(): JSX.Element {
     return missingValuesStr.toString();
   }
 
-  async function fillInBlanks() {
-    const nestedEvent = new NestedEventModel(
-      updatedEvent + inputElement.value.toString()
-    );
+  async function fillInBlanks(updatedEvent: EventModel) {
+    console.log(`in fill the blanks: ${JSON.stringify(updatedEvent)}`);
+
+    const nestedEvent = new NestedEventModel({
+      ...updatedEvent,
+      MissingValues: inputElement.value.toString(),
+    });
+    console.log(`nestedevent: ${JSON.stringify(nestedEvent)}`);
+
     const blanks = await dataService.sendAndReceiveNestedEvent(
       "fill_In_Blanks",
       nestedEvent
@@ -58,7 +69,13 @@ function SearchBar(): JSX.Element {
     return blanks;
   }
 
-  async function recommendVenues() {}
+  async function recommendVenues(updatedEvent: EventModel) {
+    const recommendations = await dataService.sendAndReceiveString(
+      "recommend_Venues",
+      updatedEvent
+    );
+    return recommendations;
+  }
 
   async function sendToBackend() {
     try {
@@ -74,31 +91,44 @@ function SearchBar(): JSX.Element {
         console.log("no event yet");
 
         updatedEvent = await sendPrompt();
-        console.log(updatedEvent);
+        // console.log(updatedEvent);
 
         setCurrentEvent(updatedEvent);
 
         // If the event is missing values
+        console.log(`line 84 - ${updatedEvent}`);
+
         if (hasNullProperty(updatedEvent)) {
           // Update AI chat text...
           console.log("missing values...");
+          console.log(updatedEvent);
+
           const text = await askForBlanks();
           setOutputText(text);
-        }
-      }
-
-      if (updatedEvent && hasNullProperty(updatedEvent)) {
-        updatedEvent = await fillInBlanks();
-        setCurrentEvent(updatedEvent);
-
-        if (!hasNullProperty(updatedEvent)) {
-          recommendVenues();
           return;
         }
       }
+      updatedEvent = currentEvent;
+      console.log(`line 102 - ${JSON.stringify(updatedEvent)}`);
+      if (hasNullProperty(updatedEvent)) {
+        console.log("is missing values-> fill them in");
 
-      if (updatedEvent && !hasNullProperty(updatedEvent)) {
-        recommendVenues();
+        updatedEvent = await fillInBlanks(updatedEvent);
+        setCurrentEvent(updatedEvent);
+        // updatedEvent = currentEvent;
+        console.log(`line 109 - ${updatedEvent}`);
+        if (!hasNullProperty(updatedEvent)) {
+          const text = recommendVenues(updatedEvent);
+          setOutputText(await text);
+        } else {
+          const text = await askForBlanks();
+          setOutputText(text);
+        }
+        return;
+      }
+      if (!hasNullProperty(updatedEvent)) {
+        const text = recommendVenues(updatedEvent);
+        setOutputText(await text);
       }
     } catch (err: any) {
       notifyService.error(err);
